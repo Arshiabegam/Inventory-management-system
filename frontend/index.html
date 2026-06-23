@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warehouse Inventory Management Dashboard</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <div class="brand-icon">📦</div>
+        <div class="brand-text">
+          <h1>StockFlow</h1>
+          <p>Warehouse Inventory & Stock Control</p>
+        </div>
+      </div>
+      <div class="db-status" id="dbStatus">
+        <span class="status-dot success"></span>
+        <span class="status-text">Database Connected</span>
+      </div>
+    </header>
+
+    <!-- Stats Section -->
+    <section class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon info">📦</div>
+        <div class="stat-info">
+          <h3>Total Products</h3>
+          <p class="stat-value" id="statTotalProducts">0</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">💰</div>
+        <div class="stat-info">
+          <h3>Total Value</h3>
+          <p class="stat-value" id="statTotalValue">$0.00</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">⚠️</div>
+        <div class="stat-info">
+          <h3>Low Stock Items</h3>
+          <p class="stat-value" id="statLowStock">0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="main-layout">
+      <!-- Product Form Section -->
+      <section class="form-section">
+        <div class="card glass">
+          <h2 id="formTitle">Add New Product</h2>
+          <p class="form-subtitle">Enter product parameters to update warehouse records.</p>
+          
+          <form id="productForm">
+            <input type="hidden" id="productId" name="productId">
+            
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" placeholder="e.g. Wireless Mouse" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" required>
+                  <option value="" disabled selected>Select category</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Office Supplies">Office Supplies</option>
+                  <option value="Apparel">Apparel</option>
+                  <option value="Food & Beverage">Food & Beverage</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="supplier">Supplier</label>
+                <input type="text" id="supplier" placeholder="e.g. Logitech" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="price">Price ($)</label>
+                <input type="number" id="price" step="0.01" min="0" placeholder="0.00" required>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" min="0" placeholder="0" required>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary" id="btnSubmit">Add Product</button>
+              <button type="button" class="btn secondary" id="btnCancel" style="display: none;">Cancel Edit</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Products Inventory Table Section -->
+      <section class="table-section">
+        <div class="card glass">
+          <div class="table-header">
+            <h2>Inventory Stock List</h2>
+            <div class="search-box">
+              <input type="text" id="searchInput" placeholder="Search products...">
+            </div>
+          </div>
+          
+          <div class="table-wrapper">
+            <table class="inventory-table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Supplier</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryBody">
+                <tr>
+                  <td colspan="7" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading inventory...</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>

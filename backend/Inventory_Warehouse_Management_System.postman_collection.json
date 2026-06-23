@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "8c5b16db-54e7-49d6-b258-009d31191590",
+		"name": "Inventory Warehouse Management System API",
+		"description": "API collection to test product CRUD operations for the Inventory Warehouse Management System.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Product",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"productName\": \"Wireless Keyboard\",\n  \"category\": \"Electronics\",\n  \"price\": 45.99,\n  \"quantity\": 80,\n  \"supplier\": \"Logitech\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/add",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"add"
+					]
+				},
+				"description": "Creates a new product in the inventory database."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				},
+				"description": "Retrieves all products from the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"price\": 49.99,\n  \"quantity\": 75\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/products/update/REPLACE_WITH_PRODUCT_ID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"update",
+						"REPLACE_WITH_PRODUCT_ID"
+					]
+				},
+				"description": "Updates details of an existing product. Replace `REPLACE_WITH_PRODUCT_ID` with a real product ID obtained from the \"Get All Products\" request."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/products/delete/REPLACE_WITH_PRODUCT_ID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"delete",
+						"REPLACE_WITH_PRODUCT_ID"
+					]
+				},
+				"description": "Deletes a product from the database. Replace `REPLACE_WITH_PRODUCT_ID` with a real product ID."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
